@@ -8,7 +8,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-let router = require("./routes/routesHTML.js");
+let router = require("./routes/routes");
 
 app.use(router);
 
