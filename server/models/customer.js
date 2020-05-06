@@ -12,8 +12,8 @@ var customer = {
         cb(res);
         });
     },
-    update: function(objColVals, condition, cb) {
-        orm.update("customers", objColVals, condition, function(res) {
+    update: function(objColVals, vals, condition, cb) {
+        orm.update("customers", objColVals, vals, condition, function(res) {
         cb(res);
         });
     },
@@ -21,7 +21,12 @@ var customer = {
         orm.delete("customers", condition, function(res) {
         cb(res);
         });
-    }
+    },
+    updateData: function(cols, vals, condition, cb) {
+        orm.updateData("customers", cols, vals, condition, function(res) {
+            cb(res);
+        });
+    },
 };
   
 module.exports = customer;
