@@ -22,11 +22,6 @@ var customer = {
         cb(res);
         });
     },
-    updateData: function(cols, vals, condition, cb) {
-        orm.updateData("customers", cols, vals, condition, function(res) {
-            cb(res);
-        });
-    },
 };
   
 module.exports = customer;

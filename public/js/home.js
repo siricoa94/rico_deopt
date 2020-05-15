@@ -1,3 +1,6 @@
+let localFirstName = JSON.parse(localStorage.getItem("user"));
+console.log("local storage working: " + localFirstName.firstname);
+
 $.ajax("/data/customer", {
     type: "GET"
 }).then(function(data) {
@@ -24,6 +27,9 @@ $(document).on('click',"#newCredentialBtn", function(event){
         userPassword: $("#newPassword").val(),
         email: $("#newEmailAddress").val(),
     };
+    localStorage.setItem("firstname", $("#newFirstName").val());
+    let localFirstName = localStorage.getItem("firstname");
+    console.log("local storage working: " + localFirstName);
     console.log("this is namefirst "+newCredentails);
     $.ajax("/api/customer/" + id, {
         type: "PUT",
