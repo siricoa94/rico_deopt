@@ -13,7 +13,7 @@ $.ajax("/data/customer", {
 $(document).on('click',"#updateBtn", function(event) {
     let id = $(this).data("id");
     console.log("this button's id: "+id);
-    $("#updateContainer").append("<fieldset><legend>Credential Update</legend><input id='newFirstName' placeholder='First Name'><input id='newLastName' placeholder='Last Name'><input id='newEmailAddress' placeholder='Email Address'><input id='newPhoneNumber' placeholder='Phone Number'><input id='newStreetAddress' placeholder='Street Address'><input id='newCardNumber' placeholder='Card Number'><input id='newPassword' placeholder='Password'><button id='newCredentialBtn' data-id='"+id+"'>submit</button></fieldset>");
+    $("#updateContainer").append("<fieldset><legend>Credential Update</legend><input id='newFirstName' placeholder='First Name'><input id='newLastName' placeholder='Last Name'><input id='newEmailAddress' placeholder='Email Address'><input id='newPhoneNumber' placeholder='Phone Number'><input id='newStreetAddress' placeholder='Street Address'><input id='newPassword' placeholder='Password'><button id='newCredentialBtn' data-id='"+id+"'>submit</button></fieldset>");
 });
 $(document).on('click',"#newCredentialBtn", function(event){
     let id = $(this).data("id");

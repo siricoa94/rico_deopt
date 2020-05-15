@@ -5,9 +5,10 @@ $("#credentialBtn").on("click", e =>{
         lastname: $("#lastName").val(),
         phone: $("#phoneNumber").val(),
         address: $("#streetAddress").val(),
-        credit: $("#cardNumber").val(),
+        credit: 10000,
         userPassword: $("#password").val(),
         email: $("#email").val(),
+        userid: "444",
     };
     localStorage.setItem("user",JSON.stringify(credentails));
     let localFirstName = JSON.parse(localStorage.getItem("user"));
