@@ -1,23 +1,36 @@
-
 $("#credentialBtn").on("click", e =>{
-    let credentails = {
-        firstname: $("#firstName").val(),
-        lastname: $("#lastName").val(),
-        phone: $("#phoneNumber").val(),
-        address: $("#streetAddress").val(),
-        credit: 10000,
-        userPassword: $("#password").val(),
-        email: $("#email").val(),
-        userid: "444",
-    };
-    localStorage.setItem("user",JSON.stringify(credentails));
-    let localFirstName = JSON.parse(localStorage.getItem("user"));
-    console.log("local storage working: " + localFirstName.firstname);
-    console.log("creds "+ JSON.stringify(credentails));
-    $.ajax("/api/customer", {
-        type: "POST",
-        data: credentails
-    }).then(e => {
-        console.log("credentials entered! " + credentails);
+    e.preventDefault();
+    let auth = firebase.auth();
+    let firstName = $("#firstName").val();
+    let lastName = $("#lastName").val();
+    let phoneNumber = $("#phoneNumber").val();
+    let streetAddress = $("#streetAddress").val();
+    let creditAmmount = 10000;
+    let userPasswordVal = $("#password").val();
+    let emailVal = $("#email").val();
+    let promise = auth.createUserWithEmailAndPassword(emailVal,userPasswordVal);
+    promise
+    .catch(e => console.log(e.message)).then(function(){
+        let credentails = {
+            firstname: firstName,
+            lastname: lastName,
+            phone: phoneNumber,
+            address: streetAddress,
+            credit: creditAmmount,
+            userPassword: userPasswordVal,
+            email: emailVal,
+            userid: firebase.auth().currentUser.uid,
+        };
+        localStorage.setItem("user",JSON.stringify(credentails));
+        let localFirstName = JSON.parse(localStorage.getItem("user"));
+        console.log("local storage working: " + localFirstName.firstname);
+        console.log("creds "+ JSON.stringify(credentails));
+        $.ajax("/api/customer", {
+            type: "POST",
+            data: credentails
+        }).then(e => {
+            console.log("credentials entered! " + credentails);
+        });
     });
+    
 });
