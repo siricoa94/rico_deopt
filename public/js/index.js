@@ -1,4 +1,4 @@
-$("#credentialBtn").on("click", e =>{
+$("#credentialBtn").on("click", e => {
     e.preventDefault();
     let auth = firebase.auth();
     let firstName = $("#firstName").val();
@@ -34,3 +34,39 @@ $("#credentialBtn").on("click", e =>{
     });
     
 });
+$("#signIn").on("click", e => {
+    e.preventDefault();
+    var email = $("#emailLogIn").val();
+    var password = $("#passwordLogIn").val();
+    var auth = firebase.auth();
+    var promise = auth.signInWithEmailAndPassword(email, password);
+    promise
+    .catch(e => console.log(e.message)).then(function(){
+        $.ajax("/data/customer", {
+            type: "GET"
+        }).then(function(data) {
+            console.log("here is your data: "+ data);
+            console.log(JSON.stringify(data.customer));
+            for(i = 0; i < data.customer.length; i++){
+                if(data.customer[i].userid == firebase.auth().currentUser.uid){
+                    let credentials = {
+                        firstname: data.customer[i].firstname,
+                        lastname: data.customer[i].lastname,
+                        phone: data.customer[i].phone,
+                        address: data.customer[i].address,
+                        credit: data.customer[i].credit,
+                        userPassword: data.customer[i].userPassword,
+                        email: data.customer[i].email,
+                        userid: firebase.auth().currentUser.uid
+                    };
+                    localStorage.setItem("user",JSON.stringify(credentials));
+                    let localFirstName = JSON.parse(localStorage.getItem("user"));
+                    console.log("local storage working: " + localFirstName.firstname);
+                    console.log("creds "+ JSON.stringify(credentials));
+                };
+            };
+        });
+        location.href = "/products"
+    })
+    
+})

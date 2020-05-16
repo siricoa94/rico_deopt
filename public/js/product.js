@@ -158,3 +158,8 @@ $(document).on('click',".restockBtn", function(event){
     });
     location.reload();
 });
+$(document).on('click', "#logOut", function(event){
+    firebase.auth().signOut();
+    localStorage.clear();
+    location.href="/";
+})
