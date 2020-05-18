@@ -67,6 +67,23 @@ $("#signIn").on("click", e => {
             };
         });
         location.href = "/products"
-    })
+    });
     
-})
+});
+$("#firstTimer").on("click", e => {
+    console.log("first timer")
+    document.getElementById("gettingStartedDiv").style.display = "initial";
+    document.getElementById("beenHereBeforeDiv").style.display = "none";
+    location.href ="#gettingStartedDiv"
+});
+$("#secondTimer").on("click", e => {
+    console.log("second timer")
+    document.getElementById("beenHereBeforeDiv").style.display = "initial";
+    document.getElementById("gettingStartedDiv").style.display = "none";
+    location.href ="#beenHereBeforeDiv"
+});
+$(".topBtn").on("click", e => {
+    location.href="#welcomeDiv";
+    // document.getElementById("gettingStartedDiv").style.display = "none";
+    // document.getElementById("beenHereBeforeDiv").style.display = "none";
+});

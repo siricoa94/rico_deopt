@@ -58,7 +58,7 @@ $(document).on('click',".purchaseBtn", function(event){
             console.log("Updated Credentials!");
         });
     } else if (ammountData == 1) {
-        if(localCredit == 0){
+        if(localCredit - priceData <= 0){
             alert("Out of Money!");
         } else {
             let newCredit = localCredit - priceData;
@@ -89,7 +89,7 @@ $(document).on('click',".purchaseBtn", function(event){
             });
         }
     } else {
-        if(localCredit == 0){
+        if(localCredit - priceData <= 0){
             alert("Out of Money!");
         } else {
             let newCredit = localCredit - priceData;
@@ -140,7 +140,7 @@ $(document).on('click',".purchaseBtn", function(event){
             });
         };
     };
-    // location.reload();
+    location.reload();
 });
 $(document).on('click',".restockBtn", function(event){
     let id = $(this).data("id");

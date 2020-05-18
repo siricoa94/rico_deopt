@@ -1,0 +1,119 @@
+/* GOOGLE FONT OPTIONS */
+/* font-family: 'Geostar', cursive; */
+/* font-family: 'IBM Plex Sans', sans-serif; */
+/* font-family: 'Monofett', cursive; */
+/* font-family: 'Plaster', cursive; */
+* {
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    width: 100%;
+}
+nav {
+    width: 100%;
+    height: 30px;
+    background-color: #1a73e8;
+    position: fixed;
+    padding: 5px;
+    color: white;
+    font-family: 'Plaster', cursive;
+    text-shadow: 1.5px 1.5px rgba(36, 36, 36, 0.507);
+    font-size: 25px;
+    display: flex;
+    justify-content: space-around;
+}
+#container {
+    width: 100%;
+    background-color: #f1f1f2;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+#welcomeDiv {
+    padding-top: 225px;
+    text-align: center;
+    background-color: #f1f1f2;
+    height: 100vh;
+}
+#titleDivInner{
+    background-color: white;
+    border-radius: .25rem;
+    box-shadow: 1.5px 1.5px rgba(36, 36, 36, 0.507);
+    padding: 5px;
+    margin-bottom: 50px;
+    width: 300px;
+    height: 400px;
+    color: #1a73e8;
+}
+#ricoTitle {
+    background-color: #1a73e8;
+    color: white;
+    font-family: 'Plaster', cursive;
+    text-shadow: 1.5px 1.5px rgba(36, 36, 36, 0.507);
+    box-shadow: 1.5px 1.5px rgba(36, 36, 36, 0.507);
+    border-radius: .15rem;
+    margin-bottom: 150px;
+}
+#titleDiv {
+    display: flex;
+    justify-content: center;
+}
+.titleBtn{
+    background-color: #1a73e8;
+    color: white;
+    margin: 5px;
+}
+#displayContainer{
+    width: 100%;
+}
+#displayList{
+    text-align: left;
+}
+#gettingStartedContainer{
+    display: flex;
+}
+#gettingStartedDiv{
+    display: none;
+    background-color: #f1f1f2;
+    width: 100%;
+    padding: 100px 10px 50px 10px;
+}
+.innerDisplayDiv {
+    background-color: white;
+    padding: 20px;
+    border-radius: .25rem;
+    box-shadow: 1.5px 1.5px rgba(36, 36, 36, 0.507);
+    text-align: justify;
+}
+button {
+    border: none;
+    border-radius: .25rem;
+    background-color: white;
+    color: #1a73e8;
+    box-shadow: 1.5px 1.5px rgba(36, 36, 36, 0.507);
+    outline: none;
+    width: 150px;
+    height: 30px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: bold;
+}
+button:active {
+    transform: scale(.95);
+}
+#beenHereBeforeContainer {
+    display: flex;
+}
+#beenHereBeforeDiv {
+    display: none;
+    background-color: #f1f1f2;
+    width: 100%;
+    padding: 100px 10px 50px 10px;
+}
+#logOutDiv {
+    text-align: center;
+    background-color: #1a73e8;
+    height: 30px;
+    width: 100%;
+    bottom: 0%;
+}
