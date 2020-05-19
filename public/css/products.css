@@ -27,6 +27,7 @@ nav {
     font-size: 25px;
     display: flex;
     justify-content: space-around;
+    overflow: hidden;
 }
 #navDivTitle {
     display: flex;
