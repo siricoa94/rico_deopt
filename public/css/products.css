@@ -1,3 +1,8 @@
+/* GOOGLE FONT OPTIONS */
+/* font-family: 'Geostar', cursive; */
+/* font-family: 'IBM Plex Sans', sans-serif; */
+/* font-family: 'Monofett', cursive; */
+/* font-family: 'Plaster', cursive; */
 body {
     margin: 0px;
     padding: 0px;
@@ -7,52 +12,72 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgb(240, 240, 240);
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 nav {
     width: 100%;
-    height: 50px;
-    background-color: rgba(23, 185, 85, 0.89);
+    height: 30px;
+    background-color: white;
+    position: fixed;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    padding-bottom: 15px;
+    color: crimson;
+    font-family: 'Plaster', cursive;
+    text-shadow: 1.5px 1.5px rgba(36, 36, 36, 0.507);
+    font-size: 25px;
+    display: flex;
+    justify-content: space-around;
 }
-#sidenavDisplayBtn{
-    position: sticky;
-    top: 20%;
-    height: 300px;
-    width: 10px;
-    border-top-right-radius: 50rem;
-    border-bottom-right-radius: 50rem;
-}
-#sideNav {
-    display: none;
-    top: 150px;
-    height: 1800px;
-    width: 75px;
-    background-color: rgb(240, 240, 240);
-    border-bottom-right-radius: .25rem;
+nav > div > button {
+    background-color: #1a73e8;
+    color: white;
 }
 #productContainer {
-    width: 90%;
-    height: 1800px;
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px 0px 20px;
     background-color: rgb(240, 240, 240);
+}
+#productContainerInner {
+    background-color: white;
+    width: 800px;
     padding: 10px;
 }
 .productCard {
     display: flex;
     justify-content: space-around;
-    width: 40%;
     height: 50px;
-    background-color: aqua;
+    background-color: #1a73e8;
+    color: white;
     padding: 30px;
-    margin: 10px 10px 10px 20px;
+    font-weight: 600;
 }
 .productCardOutStock {
     display: flex;
     justify-content: space-around;
     width: 40%;
     height: 50px;
-    background-color: rgb(255, 75, 75);
+    background-color: rgb(145, 0, 0);
     padding: 30px;
     margin: 10px 10px 10px 20px;
+    font-weight: 600;
 }
 .productInfo {
     padding: 5px;
+}
+.productImg {
+    width: 250px;
+    height: 250px;
+}
+button {
+    border: none;
+    border-radius: .25rem;
+    background-color: white;
+    color: #1a73e8;
+    box-shadow: 1.5px 1.5px rgba(36, 36, 36, 0.507);
+    outline: none;
+    width: 150px;
+    height: 30px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: bold;
 }

@@ -30,12 +30,13 @@ $("#credentialBtn").on("click", e => {
             data: credentails
         }).then(e => {
             console.log("credentials entered! " + credentails);
+            location.href="/home"
         });
-    });
-    
+    });  
 });
 $("#signIn").on("click", e => {
     e.preventDefault();
+    localStorage.clear();
     var email = $("#emailLogIn").val();
     var password = $("#passwordLogIn").val();
     var auth = firebase.auth();
@@ -74,7 +75,7 @@ $("#firstTimer").on("click", e => {
     console.log("first timer")
     document.getElementById("gettingStartedDiv").style.display = "initial";
     document.getElementById("beenHereBeforeDiv").style.display = "none";
-    location.href ="#gettingStartedDiv"
+    location.href ="#gettingStartedContainer"
 });
 $("#secondTimer").on("click", e => {
     console.log("second timer")
@@ -87,3 +88,8 @@ $(".topBtn").on("click", e => {
     // document.getElementById("gettingStartedDiv").style.display = "none";
     // document.getElementById("beenHereBeforeDiv").style.display = "none";
 });
+$(document).on('click', "#logOut", function(event){
+    firebase.auth().signOut();
+    localStorage.clear();
+    location.href="/";
+})
