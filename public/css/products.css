@@ -28,6 +28,10 @@ nav {
     display: flex;
     justify-content: space-around;
 }
+#navDivTitle {
+    display: flex;
+    justify-content: space-between;
+}
 nav > div > button {
     background-color: #1a73e8;
     color: white;
@@ -35,7 +39,7 @@ nav > div > button {
 #productContainer {
     display: flex;
     justify-content: center;
-    padding: 80px 20px 0px 20px;
+    padding: 80px 20px 50px 20px;
     background-color: rgb(240, 240, 240);
 }
 #productContainerInner {
@@ -66,8 +70,8 @@ nav > div > button {
     padding: 5px;
 }
 .productImg {
-    width: 250px;
-    height: 250px;
+    max-width: 400px;
+    max-height: 400px;
 }
 button {
     border: none;

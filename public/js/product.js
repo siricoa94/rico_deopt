@@ -24,8 +24,10 @@ $.ajax("/data/product", {
             }).then(e => {
                 if(data.product[i].stock == true){
                     $("#productContainerInner").append("<div class='productCard'><p>"+data.product[i].productname+"</p><p>"+data.product[i].price+"</p><p>"+data.product[i].ammount+"</p><p>IN STOCK</p></div>").append("<button class='purchaseBtn' data-price='"+data.product[i].price+"' data-id='"+data.product[i].id+"' data-class='"+data.product[i].ammount+"'>BUY NOW</button>");
+                    $("#productContainerInner").append("<img src='../images/"+data.product[i].productname+".png' class='productImg'>");
                 } else {
                     $("#productContainerInner").append("<div class='productCardOutStock'><p class='productInfo'>"+data.product[i].productname+"</p><p class='productInfo'>"+data.product[i].price+"</p><p class='productInfo'>"+data.product[i].ammount+"</p><p class='productInfo'>OUT OF STOCK</p></div>").append("<button class='restockBtn' data-id='"+data.product[i].id+"'>PLACE ORDER</button>");
+                    $("#productContainerInner").append("<img src='../images/"+data.product[i].productname+".png' class='productImg'>");
                 };
             });
         } else {
@@ -34,6 +36,7 @@ $.ajax("/data/product", {
                 $("#productContainerInner").append("<img src='../images/"+data.product[i].productname+".png' class='productImg'>");
             } else {
                 $("#productContainerInner").append("<div class='productCardOutStock'><p class='productInfo'>"+data.product[i].productname+"</p><p class='productInfo'>"+data.product[i].price+"</p><p class='productInfo'>"+data.product[i].ammount+"</p><p class='productInfo'>OUT OF STOCK</p></div>").append("<button class='restockBtn' data-id='"+data.product[i].id+"' data-class='"+data.product[i].ammount+"'>PLACE ORDER</button>");
+                $("#productContainerInner").append("<img src='../images/"+data.product[i].productname+".png' class='productImg'>");
             };
         }
     };
