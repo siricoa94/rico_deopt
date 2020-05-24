@@ -7,7 +7,11 @@ $.ajax("/data/customer", {
     console.log("here is your data: "+ data);
     console.log(JSON.stringify(data.customer));
     for(i = 0; i < data.customer.length; i++){
-        $("#container").append("<div><button id='updateBtn' data-id='"+data.customer[i].id+"'>update</button></div>");
+        if(data.customer[i].userid !== localFirstName.userid){
+            console.log("Finding Matches!");
+        } else {
+            $("#container").append("<div><button id='updateBtn' data-id='"+data.customer[i].id+"'>update</button></div>");
+        };
     };
 });
 $(document).on('click',"#updateBtn", function(event) {
@@ -39,3 +43,24 @@ $(document).on('click',"#newCredentialBtn", function(event){
         location.reload();
     });
 });
+// $(document).on('click', "#imageInput", function(event){
+//     // let id = $(this).data("id");
+//     // let newCredentails = {
+//     //     firstname: localFirstName.firstname,
+//     //     lastname: localFirstName.lastname,
+//     //     phone: localFirstName.phone,
+//     //     address: localFirstName.address,
+//     //     credit: localFirstName.credit,
+//     //     userPassword: localFirstName.userPassword,
+//     //     email: localFirstName.email,
+//     //     image: $("#imageInput").val(),
+//     // };
+//     $.ajax("/upload" + id, {
+//         type: "POST",
+//         data: newCredentails
+//     }).then(e => {
+//         console.log("Updated Credentials!");
+//         location.reload();
+//     });
+
+// });

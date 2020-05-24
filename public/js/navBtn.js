@@ -15,3 +15,29 @@ $(document).on('click',".navBtn", function(event){
             console.log("error");
     }
 });
+$(document).on('click', "#logOut", function(event){
+    firebase.auth().signOut();
+    localStorage.clear();
+    location.href="/";
+});
+$("#menuBtn").on("click", e => {
+    let value = document.getElementById("navDisplayContainer").style.display;
+   if (value == "initial") {
+        document.getElementById("navDisplayContainer").style.display = "none";
+        document.body.style.overflow = "initial";
+   } else {
+        document.getElementById("navDisplayContainer").style.display = "initial";
+        location.href = "#navDisplayContainer";
+        document.body.style.overflow = "hidden";
+   }
+});
+$("#returnBtn").on("click", e => {
+    let value = document.getElementById("navDisplayContainer").style.display;
+   if (value == "initial") {
+        document.getElementById("navDisplayContainer").style.display = "none";
+        document.body.style.overflow = "initial";
+   } else {
+        document.getElementById("navDisplayContainer").style.display = "initial";
+        document.body.style.overflow = "hidden";
+   }
+});

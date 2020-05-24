@@ -12,50 +12,10 @@ body {
     padding: 0px;
     width: 100%;
 }
-nav {
-    width: 100%;
-    height: 30px;
-    background-color: white;
-    position: fixed;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: crimson;
-    font-family: 'Plaster', cursive;
-    text-shadow: 1.5px 1.5px rgba(36, 36, 36, 0.507);
-    font-size: 20px;
-    display: flex;
-    justify-content: space-around;
-}
-#navDivTitle {
-    display: flex;
-    justify-content: space-between;
-}
 #container {
     width: 100%;
     background-color: #f1f1f2;
     font-family: 'IBM Plex Sans', sans-serif;
-}
-#navDisplayContainer {
-    background-color: black;
-    position: absolute;
-    width: 100%;
-    height: 120%;
-    z-index: 1;
-    display: none;
-    opacity: 90%;
-    transition: .5s;
-}
-#navDisplayInner {
-    display: flex;
-    justify-content: center;
-}
-#navDisplayInner > div {
-    text-align: center;
-    padding-top: 150px;
-}
-.navBtn {
-    margin: 5px;
 }
 #returnBtn {
     background-color: crimson;
@@ -103,21 +63,6 @@ nav {
     border-radius: .25rem;
     background-color: #f1f1f2;
     margin: 5px;
-}
-button {
-    border: none;
-    border-radius: .25rem;
-    background-color: #1a73e8;
-    color: white;
-    box-shadow: 1.5px 1.5px rgba(36, 36, 36, 0.507);
-    outline: none;
-    width: 150px;
-    height: 30px;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: bold;
-}
-button:active {
-    transform: scale(.95);
 }
 .topBtn {
     background-color: #1a73e8;

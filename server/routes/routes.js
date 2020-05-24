@@ -1,11 +1,14 @@
 let express = require("express");
-
 let router = express.Router();
 
 let path = require("path");
 
+let multer = require('multer');
+let upload = multer({dest: __dirname + '/images'});
+
 let customer = require("../models/customer");
 let product = require("../models/product");
+
 
 router.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../../public/html/index.html"));
@@ -22,7 +25,6 @@ router.get("/data/customer", function(req, res) {
       res.json({ customer: data });
     });
 });
-
 router.post("/api/customer", function(req, res) {
   customer.create([
       "firstname", "lastname","phone","address","credit","userPassword","email","userid"
@@ -33,6 +35,10 @@ router.post("/api/customer", function(req, res) {
       // Send back the ID of the new quote
       res.json({ id: result.insertId });
   });
+});
+router.post('/path', upload.single('avatar'), function (req, res) {
+  req.file;
+  // req.body will hold the text fields, if there were any
 });
 router.put("/api/customer/:id", function(req, res) {
   let condition = "id = " + req.params.id;
