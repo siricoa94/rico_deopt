@@ -3,9 +3,6 @@ let router = express.Router();
 
 let path = require("path");
 
-let multer = require('multer');
-let upload = multer({dest: __dirname + '/images'});
-
 let customer = require("../models/customer");
 let product = require("../models/product");
 
@@ -35,10 +32,6 @@ router.post("/api/customer", function(req, res) {
       // Send back the ID of the new quote
       res.json({ id: result.insertId });
   });
-});
-router.post('/path', upload.single('avatar'), function (req, res) {
-  req.file;
-  // req.body will hold the text fields, if there were any
 });
 router.put("/api/customer/:id", function(req, res) {
   let condition = "id = " + req.params.id;
