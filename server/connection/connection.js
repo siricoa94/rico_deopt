@@ -5,7 +5,13 @@ let connection;
 if (process.env.JAWSDB_URL) {
    connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
-  console.log("error!")
+    connection = mysql.createConnection({
+        host: "localhost",
+        port: 3306,
+        user: "root",
+        password: "Slark98",
+        database: "ricodepot"
+      });
 };
 
 connection.connect(function(err) {
