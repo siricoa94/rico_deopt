@@ -1,5 +1,5 @@
 var firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
+    apiKey: "AIzaSyD4iKY2SgbthAyCskwmfl4o4pr5YWuofeI",
     authDomain: "rico-depot.firebaseapp.com",
     databaseURL: "https://rico-depot.firebaseio.com",
     projectId: "rico-depot",
