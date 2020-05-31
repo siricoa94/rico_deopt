@@ -7,6 +7,7 @@
     <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
     <link rel="shortcut icon" type="image/png" href="../images/favicon.png"/>
     <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/home.css">
     <link href="https://fonts.googleapis.com/css2?family=Geostar&family=IBM+Plex+Sans&family=Monofett&family=Plaster&display=swap" rel="stylesheet">
     <title>Rico Depot</title>
 </head>
@@ -17,25 +18,23 @@
             <button id="menuBtn">Menu</button>
         </div>
     </nav>
-    <div id="navDisplayContainer">
-        <div id="navDisplayInner">
-            <div>
-            <button class="navBtn" id="logOut">Log Out</button>
-            <button class="navBtn" data-id="homePageBtn">Home</button>
-            <button class="navBtn" data-id="productsPageBtn">Products</button>
-            <button class="navBtn" data-id="leaderboardPageBtn">Leaderboard</button>
-            <button class="navBtn" id="returnBtn">X</button>
+    <div id=container>
+        <div id="navDisplayContainer">
+            <div id="navDisplayInner">
+                <div>
+                <button class="navBtn" id="logOut">Log Out</button>
+                <button class="navBtn" data-id="homePageBtn">Home</button>
+                <button class="navBtn" data-id="productsPageBtn">Products</button>
+                <button class="navBtn" data-id="leaderboardPageBtn">Leaderboard</button>
+                <button class="navBtn" id="returnBtn">X</button>
+                </div>
             </div>
         </div>
-    </div>
-    <p>Welcome Home</p>
-    <div id="container"></div>
-    <div id="updateContainer"></div>
-    <div id="imageUploadDiv">
-        <form action="/uploads" method="post" enctype="multipart/form-data">
-            <input type="file" accept="image/*" name="avatar" />
-            <input type="submit" value="upload">
-        </form>
+        <div id="welcomeHomeContainer">
+            <div id="containerHomeInner">
+                <div id="updateContainer"></div>
+            </div>
+        </div>
     </div>
 </body>
 <script src="../js/home.js" type="text/javascript"></script>

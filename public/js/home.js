@@ -1,5 +1,7 @@
 let localFirstName = JSON.parse(localStorage.getItem("user"));
 console.log("local storage working: " + localFirstName.firstname);
+let newCred = localFirstName.credit
+let newID = localFirstName.userid
 
 $.ajax("/data/customer", {
     type: "GET"
@@ -10,7 +12,7 @@ $.ajax("/data/customer", {
         if(data.customer[i].userid !== localFirstName.userid){
             console.log("Finding Matches!");
         } else {
-            $("#container").append("<div><button id='updateBtn' data-id='"+data.customer[i].id+"'>update</button></div>");
+            $("#containerHomeInner").append("<div id='userContentDiv'><p>"+data.customer[i].firstname+"</p><p>"+data.customer[i].lastname+"</p><p>"+data.customer[i].phone+"</p><p>"+data.customer[i].address+"</p><p>$"+data.customer[i].credit+"</p><p>"+data.customer[i].email+"</p><p>"+data.customer[i].userPassword+"</p></div><div><button id='updateBtn' data-id='"+data.customer[i].id+"'>update</button></div>");
         };
     };
 });
@@ -27,12 +29,13 @@ $(document).on('click',"#newCredentialBtn", function(event){
         lastname: $("#newLastName").val(),
         phone: $("#newPhoneNumber").val(),
         address: $("#newStreetAddress").val(),
-        credit: $("#newCardNumber").val(),
+        credit: newCred,
         userPassword: $("#newPassword").val(),
         email: $("#newEmailAddress").val(),
+        userid: newID,
     };
-    localStorage.setItem("firstname", $("#newFirstName").val());
-    let localFirstName = localStorage.getItem("firstname");
+    localStorage.setItem("user",JSON.stringify(newCredentails));
+    let localFirstName = JSON.parse(localStorage.getItem("user"));
     console.log("local storage working: " + localFirstName);
     console.log("this is namefirst "+newCredentails);
     $.ajax("/api/customer/" + id, {
@@ -43,24 +46,3 @@ $(document).on('click',"#newCredentialBtn", function(event){
         location.reload();
     });
 });
-// $(document).on('click', "#imageInput", function(event){
-//     // let id = $(this).data("id");
-//     // let newCredentails = {
-//     //     firstname: localFirstName.firstname,
-//     //     lastname: localFirstName.lastname,
-//     //     phone: localFirstName.phone,
-//     //     address: localFirstName.address,
-//     //     credit: localFirstName.credit,
-//     //     userPassword: localFirstName.userPassword,
-//     //     email: localFirstName.email,
-//     //     image: $("#imageInput").val(),
-//     // };
-//     $.ajax("/upload" + id, {
-//         type: "POST",
-//         data: newCredentails
-//     }).then(e => {
-//         console.log("Updated Credentials!");
-//         location.reload();
-//     });
-
-// });
