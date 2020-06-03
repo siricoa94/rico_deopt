@@ -3,7 +3,7 @@ $(document).on('click',".navBtn", function(event){
     console.log("this is your id " + id);
     switch (id) {
         case 'homePageBtn' :
-            location.href = "/";
+            location.href = "/home";
             break;
         case 'productsPageBtn' :
             location.href = "/products"

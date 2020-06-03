@@ -5,6 +5,7 @@ let path = require("path");
 
 let customer = require("../models/customer");
 let product = require("../models/product");
+let purchasehist = require("../models/purchasehist");
 
 
 router.get("/", (req, res) => {
@@ -15,6 +16,9 @@ router.get("/home", (req, res) => {
 });
 router.get("/products", (req, res) => {
   res.sendFile(path.join(__dirname, "../../public/html/products.html"));
+});
+router.get("/leaderboard", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../public/html/leaderboard.html"));
 });
 // Customer Data =================================
 router.get("/data/customer", function(req, res) {
@@ -73,4 +77,22 @@ router.put("/api/product/:id", function(req, res) {
     }
   });
 });
+// Purchase History Data ============================
+router.get("/data/purchasehist", function(req, res) {
+  purchasehist.all(function(data) {
+    res.json({ purchasehist: data });
+  });
+});
+router.post("/api/purchasehist", function(req, res) {
+  purchasehist.create([
+      "firstname", "lastname","phone","address","email","purchaseday","price","userid"
+  ], [
+      req.body.firstname, req.body.lastname, req.body.phone, req.body.address, req.body.email, req.body.purchaseday, req.body.price, req.body.userid
+  ], function(result) {
+      // Send back the ID of the new quote
+      res.json({ id: result.insertId });
+  });
+});
+
+
 module.exports = router;

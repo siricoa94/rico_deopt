@@ -12,14 +12,14 @@ $.ajax("/data/customer", {
         if(data.customer[i].userid !== localFirstName.userid){
             console.log("Finding Matches!");
         } else {
-            $("#containerHomeInner").append("<div id='userContentDiv'><p>"+data.customer[i].firstname+"</p><p>"+data.customer[i].lastname+"</p><p>"+data.customer[i].phone+"</p><p>"+data.customer[i].address+"</p><p>$"+data.customer[i].credit+"</p><p>"+data.customer[i].email+"</p><p>"+data.customer[i].userPassword+"</p></div><div><button id='updateBtn' data-id='"+data.customer[i].id+"'>update</button></div>");
+            $("#containerHomeInner").append("<div id='userContentDiv'><p>"+data.customer[i].firstname+"</p><p>"+data.customer[i].lastname+"</p><p>"+data.customer[i].phone+"</p><p>"+data.customer[i].address+"</p><p>$"+data.customer[i].credit+"</p><p>"+data.customer[i].email+"</p><p>"+data.customer[i].userPassword+"</p><div id='updateBtnDiv'><button id='updateBtn' data-id='"+data.customer[i].id+"'>update</button></div></div>");
         };
     };
 });
 $(document).on('click',"#updateBtn", function(event) {
     let id = $(this).data("id");
     console.log("this button's id: "+id);
-    $("#updateContainer").append("<fieldset><legend>Credential Update</legend><input id='newFirstName' placeholder='First Name'><input id='newLastName' placeholder='Last Name'><input id='newEmailAddress' placeholder='Email Address'><input id='newPhoneNumber' placeholder='Phone Number'><input id='newStreetAddress' placeholder='Street Address'><input id='newPassword' placeholder='Password'><button id='newCredentialBtn' data-id='"+id+"'>submit</button></fieldset>");
+    $("#userContentDiv").append("<div id='fieldsetDiv'><fieldset><legend>Credential Update</legend><input id='newFirstName' placeholder='First Name'><input id='newLastName' placeholder='Last Name'><input id='newEmailAddress' placeholder='Email Address'><input id='newPhoneNumber' placeholder='Phone Number'><input id='newStreetAddress' placeholder='Street Address'><input id='newPassword' placeholder='Password'><button id='newCredentialBtn' data-id='"+id+"'>submit</button></fieldset></div>");
 });
 $(document).on('click',"#newCredentialBtn", function(event){
     let id = $(this).data("id");

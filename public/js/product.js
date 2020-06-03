@@ -23,19 +23,19 @@ $.ajax("/data/product", {
                 data: newState
             }).then(e => {
                 if(data.product[i].stock == true){
-                    $("#productContainerInner").append("<div class='productCard'><p>"+data.product[i].productname+"</p><p>Price $"+data.product[i].price+"</p><p>IN STOCK: "+data.product[i].ammount+"</p></div>").append("<button class='purchaseBtn' data-price='"+data.product[i].price+"' data-id='"+data.product[i].id+"' data-class='"+data.product[i].ammount+"'>BUY NOW</button>");
+                    $("#productContainerInner").append("<div class='productCard'><p>"+data.product[i].productname+"</p><p>Price: $"+data.product[i].price+".00</p><p>IN STOCK: "+data.product[i].ammount+"</p></div>").append("<button class='purchaseBtn' data-price='"+data.product[i].price+"' data-id='"+data.product[i].id+"' data-class='"+data.product[i].ammount+"'>BUY NOW</button>");
                     $("#productContainerInner").append("<img src='../images/"+data.product[i].productname.toLowerCase()+".png' class='productImg'>");
                 } else {
-                    $("#productContainerInner").append("<div class='productCardOutStock'><p class='productInfo'>"+data.product[i].productname+"</p><p class='productInfo'>"+data.product[i].price+"</p><p class='productInfo'>"+data.product[i].ammount+"</p><p class='productInfo'>OUT OF STOCK</p></div>").append("<button class='restockBtn' data-id='"+data.product[i].id+"'>PLACE ORDER</button>");
+                    $("#productContainerInner").append("<div class='productCardOutStock'><p class='productInfo'>"+data.product[i].productname+"</p><p class='productInfo'>"+data.product[i].price+".00</p><p class='productInfo'>"+data.product[i].ammount+"</p><p class='productInfo'>OUT OF STOCK</p></div>").append("<button class='restockBtn' data-id='"+data.product[i].id+"'>PLACE ORDER</button>");
                     $("#productContainerInner").append("<img src='../images/"+data.product[i].productname.toLowerCase()+".png'  class='productImg'>");
                 };
             });
         } else {
             if(data.product[i].stock == true){
-                $("#productContainerInner").append("<div class='productCard'><p>"+data.product[i].productname+"</p><p>Price $"+data.product[i].price+"</p><p>IN STOCK: "+data.product[i].ammount+"</p></div>").append("<button class='purchaseBtn' data-price='"+data.product[i].price+"' data-id='"+data.product[i].id+"' data-class='"+data.product[i].ammount+"'>BUY NOW</button>");
+                $("#productContainerInner").append("<div class='productCard'><p>"+data.product[i].productname+"</p><p>Price: $"+data.product[i].price+".00</p><p>IN STOCK: "+data.product[i].ammount+"</p></div>").append("<button class='purchaseBtn' data-price='"+data.product[i].price+"' data-id='"+data.product[i].id+"' data-class='"+data.product[i].ammount+"'>BUY NOW</button>");
                 $("#productContainerInner").append("<img src='../images/"+data.product[i].productname.toLowerCase()+".png' class='productImg'>");
             } else {
-                $("#productContainerInner").append("<div class='productCardOutStock'><p class='productInfo'>"+data.product[i].productname+"</p><p class='productInfo'>"+data.product[i].price+"</p><p class='productInfo'>"+data.product[i].ammount+"</p><p class='productInfo'>OUT OF STOCK</p></div>").append("<button class='restockBtn' data-id='"+data.product[i].id+"' data-class='"+data.product[i].ammount+"'>PLACE ORDER</button>");
+                $("#productContainerInner").append("<div class='productCardOutStock'><p class='productInfo'>"+data.product[i].productname+"</p><p class='productInfo'>"+data.product[i].price+".00</p><p class='productInfo'>"+data.product[i].ammount+"</p><p class='productInfo'>OUT OF STOCK</p></div>").append("<button class='restockBtn' data-id='"+data.product[i].id+"' data-class='"+data.product[i].ammount+"'>PLACE ORDER</button>");
                 $("#productContainerInner").append("<img src='../images/"+data.product[i].productname.toLowerCase()+".png' class='productImg'>");
             };
         }
@@ -62,7 +62,7 @@ $(document).on('click',".purchaseBtn", function(event){
             console.log("Updated Credentials!");
         });
     } else if (ammountData == 1) {
-        if(localCredit - priceData <= 0){
+        if(localCredit - priceData < 1){
             alert("Out of Money!");
         } else {
             let newCredit = localCredit - priceData;
@@ -74,6 +74,7 @@ $(document).on('click',".purchaseBtn", function(event){
                 credit: newCredit,
                 userPassword: localFirstName.userPassword,
                 email: localFirstName.email,
+                userid: localFirstName.userid
             }
             console.log("New Local Credents! " + JSON.stringify(newLocalCredentials));
             console.log("new Credit! "+ newCredit);
@@ -84,6 +85,25 @@ $(document).on('click',".purchaseBtn", function(event){
                 stock: 0,
                 ammount: ammountData - 1
             }
+            $.ajax("/data/customer", {
+                type: "GET"
+            }).then(function(data) {
+                console.log("here is your data: "+ data);
+                console.log(JSON.stringify(data.customer));
+                for(i = 0; i < data.customer.length; i++){
+                    if(data.customer[i].userid == localFirstName.userid){
+                        let id = data.customer[i].id;
+                        $.ajax("/api/customer/" + id, {
+                            type: "PUT",
+                            data: newLocalCredentials
+                        }).then(e => {
+                            console.log("Updated Credentials!");
+                            location.reload();
+                        });
+                        
+                    };
+                };
+            });
             console.log("new ammount: " + newAmmount);
             $.ajax("/api/product/" + id, {
                 type: "PUT",
@@ -91,9 +111,26 @@ $(document).on('click',".purchaseBtn", function(event){
             }).then(e => {
                 console.log("Updated Credentials!");
             });
+            let purchaseHistData = {
+                firstname: localFirstName.firstname,
+                lastname: localFirstName.lastname,
+                phone: localFirstName.phone,
+                address: localFirstName.address,
+                email: localFirstName.email,
+                userid: localFirstName.userid,
+                price: priceData,
+                purchaseday: today
+            }
+            console.log("purchase HISTORY!!! "+ purchaseHistData);
+            $.ajax("/api/purchasehist/", {
+                type: "POST",
+                data: purchaseHistData
+            }).then(e => {
+                console.log("Updated Credentials!");
+            });
         }
     } else {
-        if(localCredit - priceData <= 0){
+        if(localCredit - priceData < 1){
             alert("Out of Money!");
         } else {
             let newCredit = localCredit - priceData;
@@ -130,7 +167,6 @@ $(document).on('click',".purchaseBtn", function(event){
                             data: newLocalCredentials
                         }).then(e => {
                             console.log("Updated Credentials!");
-                            location.reload();
                         });
                         
                     };
@@ -139,6 +175,23 @@ $(document).on('click',".purchaseBtn", function(event){
             $.ajax("/api/product/" + id, {
                 type: "PUT",
                 data: newAmmount
+            }).then(e => {
+                console.log("Updated Credentials!");
+            });
+            let purchaseHistData = {
+                firstname: localFirstName.firstname,
+                lastname: localFirstName.lastname,
+                phone: localFirstName.phone,
+                address: localFirstName.address,
+                email: localFirstName.email,
+                userid: localFirstName.userid,
+                price: priceData,
+                purchaseday: today
+            }
+            console.log("purchase HISTORY!!! "+ JSON.stringify(purchaseHistData));
+            $.ajax("/api/purchasehist/", {
+                type: "POST",
+                data: purchaseHistData
             }).then(e => {
                 console.log("Updated Credentials!");
             });
@@ -166,4 +219,7 @@ $(document).on('click', "#logOut", function(event){
     firebase.auth().signOut();
     localStorage.clear();
     location.href="/";
-})
+});
+
+let today = new Date();
+let date = ""+today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate()+"";

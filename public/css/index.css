@@ -101,14 +101,3 @@ body {
     background-color: #f1f1f2;
     width: 100%;
 }
-#logOutDiv {
-    text-align: center;
-    background-color: white;
-    color: crimson;
-    height: 30px;
-    width: 100%;
-    bottom: 0%;
-    border-top: .5px solid rgba(0, 0, 0, 0.3);
-    text-shadow: 1.5px 1.5px rgba(36, 36, 36, 0.507);
-    font-family: 'Plaster', cursive;
-}

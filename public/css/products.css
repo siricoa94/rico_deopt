@@ -48,6 +48,15 @@ body {
     padding: 5px;
 }
 .productImg {
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 500px;
+    max-height: 500px;
+}
+.purchaseBtn {
+    margin-bottom: 10px;
+}
+@media only screen and (max-width: 600px) {
+    .productImg {
+        max-width: 300px;
+        max-height: 300px;
+    }
 }

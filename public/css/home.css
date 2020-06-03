@@ -4,39 +4,109 @@ body {
     border: 0px;
 }
 #container{
-    display: flex;
-    justify-content: center;
     width: 100%;
-    height: 140vh;
+    height: 100%;
     font-family: 'IBM Plex Sans', sans-serif;
-    background-color: rgb(240, 240, 240);
 }
 #welcomeHomeContainer{
-    margin-top: 150px;
     width: 100%;
-    height: 750px;
-    padding-bottom: 25px;
-    background-image: url("https://images.unsplash.com/photo-1588296172789-310b25f53891?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+    min-height: 400px;
+    background-image: url("../images/ricostore.png");
     background-size: stretch;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#purchaseHistDiv {
+    display: flex;
+    justify-content: center;
+}
+#purchaseHistInfoDisplay {
+    background-color: rgba(220, 20, 60, 0.666);
+    /* display: flex;
+    overflow: auto; */
+    border-radius: .25rem;
+    color: black;
+    font-size: 18px;
+    padding: 10px 0px 10px 0px;
+}
+.userPurchaseDiv {
+    background-color: white;
+    margin: 10px 0px 10px 0px;
+    padding: 5px;
 }
 #containerHomeInner{
     text-align: justify;
     font-weight: bold;
-    color: crimson;
+    color: black;
     font-size: 18px;
     background-color: rgba(255, 255, 255, 0.753);
-    border: 2px solid crimson;
     border-radius: .25rem;
-    padding: 50px;
-    margin:50px 20px 0px 20px;
 }
-#updateContainer{
+#updateBtnDiv {
+    padding-bottom: 10px;
+    text-align: center;
+}
+#infoContainer{
+    width: 100%;
+    height: 400px;
+    background-image: url("../images/ricostore.png");
+    background-size: stretch;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: top;
+}
+#fieldsetDiv > fieldset {
+    font-weight: bold;
+    font-size: 18px;
+    text-shadow: rgb(119, 119, 119) 1px 1px;
+    color: crimson;
+    border: crimson 1px solid;
+    box-shadow: rgb(119, 119, 119) 1.5px 1.5px;
+    border-radius: .25rem;
+    background-color: rgba(255, 255, 255, 0.753);
+}
+.infoText {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.753);
+    
+}
+#infoTextInnerTitle {
     display: flex;
     justify-content: center;
 }
-#updateContainer > fieldset {
-    border: dashed crimson 2px;
+#infoTextInnerTitle > h1 {
+    max-width: 300px;
+    color: crimson;
+}
+#infoTextInnerInstructions {
+    text-align: center;
+    border-bottom: 1px dashed crimson;
+    /* border-top: 1px dashed crimson; */
+}
+#accountSettingsTitle > h2 {
+    max-width: 300px;
+    border-bottom: 1.5px solid crimson;
+    color: crimson;
+}
+#accountSettingsTitle {
+    display: flex;
+    justify-content: center;
+}
+#userContentDiv{
+    padding: 20px;
+    border-bottom: 1px dashed crimson;
+    border-top: 1px dashed crimson;
+}
+#homeFooter{
+    height: 400px;
+    background-image: url("../images/ricostore.png");
+    background-size: stretch;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
 }
