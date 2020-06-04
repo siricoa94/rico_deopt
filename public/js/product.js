@@ -9,8 +9,8 @@ console.log("base credit " + localCredit);
 $.ajax("/data/product", {
     type: "GET"
 }).then(function(data) {
-    console.log("here is your data: "+ data);
-    console.log(JSON.stringify(data.product));
+    // console.log("here is your data: "+ data);
+    // console.log(JSON.stringify(data.product));
     for(i = 0; i < data.product.length; i++){
         let newState = {
             stock: false,
@@ -45,9 +45,6 @@ $(document).on('click',".purchaseBtn", function(event){
     let id = $(this).data("id");
     let ammountData = $(this).data("class");
     let priceData = $(this).data("price");
-    console.log("dv " +priceData);
-    console.log("this is the price Data! " + JSON.stringify(priceData));
-    console.log("I work, here is your id: " + id + "; and ammount: "+ ammountData);
     if(ammountData == 0){
         alert("Out of stock!");
         let newAmmount = {
@@ -59,7 +56,7 @@ $(document).on('click',".purchaseBtn", function(event){
             type: "PUT",
             data: newAmmount
         }).then(e => {
-            console.log("Updated Credentials!");
+            console.log("Updated Credentials! 1");
         });
     } else if (ammountData == 1) {
         if(localCredit - priceData < 1){
@@ -76,8 +73,8 @@ $(document).on('click',".purchaseBtn", function(event){
                 email: localFirstName.email,
                 userid: localFirstName.userid
             }
-            console.log("New Local Credents! " + JSON.stringify(newLocalCredentials));
-            console.log("new Credit! "+ newCredit);
+            // console.log("New Local Credents! " + JSON.stringify(newLocalCredentials));
+            // console.log("new Credit! "+ newCredit);
             localStorage.setItem("user",JSON.stringify(newLocalCredentials));
             let localFirstNameNew = JSON.parse(localStorage.getItem("user"));
             console.log("local storage working 2: " + JSON.stringify(localFirstNameNew));
@@ -97,8 +94,7 @@ $(document).on('click',".purchaseBtn", function(event){
                             type: "PUT",
                             data: newLocalCredentials
                         }).then(e => {
-                            console.log("Updated Credentials!");
-                            location.reload();
+                            console.log("Updated Credentials! 3");
                         });
                         
                     };
@@ -109,7 +105,7 @@ $(document).on('click',".purchaseBtn", function(event){
                 type: "PUT",
                 data: newAmmount
             }).then(e => {
-                console.log("Updated Credentials!");
+                console.log("Updated Credentials! 5");
             });
             let purchaseHistData = {
                 firstname: localFirstName.firstname,
@@ -126,9 +122,59 @@ $(document).on('click',".purchaseBtn", function(event){
                 type: "POST",
                 data: purchaseHistData
             }).then(e => {
-                console.log("Updated Credentials!");
+                console.log("Updated Credentials! 4");
             });
-        }
+            let leaderboardsData = {
+                firstname: localFirstName.firstname,
+                lastname: localFirstName.lastname,
+                userid: localFirstName.userid,
+                price: priceData,
+            };
+            $.ajax("/data/leaderboards", {
+                type: "GET"
+            }).then(function(data) {
+                console.log("here is your data: "+ JSON.stringify(data));
+                console.log(JSON.stringify(data.leaderboards));
+                let comparisonArray = [];
+                console.log("leaderboard ID: " + data.leaderboards);
+                console.log("local ID: " + localFirstName.userid);
+                console.log("leaderboard DatA: " + JSON.stringify(leaderboardsData));
+                for(i=0; i < data.leaderboards.length; i++){
+                    comparisonArray.push([i]);
+                    console.log("comparison ARRAY!: " + comparisonArray);
+                    if(data.leaderboards[i].userid === localFirstName.userid){
+                        let id = data.leaderboards[i].id;
+                        let newPrice = priceData + data.leaderboards[i].price; 
+                        let newLeaderboardsData = {
+                            firstname: localFirstName.firstname,
+                            lastname: localFirstName.lastname,
+                            userid: localFirstName.userid,
+                            price: newPrice,
+                        }
+                        console.log("user found!");
+                        $.ajax("/api/leaderboards/" + id, {
+                            type: "PUT",
+                            data: newLeaderboardsData
+                        }).then(e => {
+                            console.log("leaderboard Updated!");
+                            location.reload();
+                        });
+                        break;
+                    } else if (data.leaderboards[i].userid !== localFirstName.userid && data.leaderboards.length == comparisonArray.length) {
+                        console.log("no user found!");
+                        $.ajax("/api/leaderboards/", {
+                            type: "POST",
+                            data: leaderboardsData
+                        }).then(e => {
+                            console.log("leaderboard Updated!");
+                            location.reload();
+                        });
+                    } else {
+                        console.log("Searching!");
+                    };
+                };
+            });
+        };
     } else {
         if(localCredit - priceData < 1){
             alert("Out of Money!");
@@ -144,8 +190,8 @@ $(document).on('click',".purchaseBtn", function(event){
                 email: localFirstName.email,
                 userid: localFirstName.userid
             };
-            console.log("New Local Credents! " + JSON.stringify(newLocalCredentials));
-            console.log("new Credit! "+ newCredit);
+            // console.log("New Local Credents! " + JSON.stringify(newLocalCredentials));
+            // console.log("new Credit! "+ newCredit);
             localStorage.setItem("user",JSON.stringify(newLocalCredentials));
             let localFirstNameNew = JSON.parse(localStorage.getItem("user"));
             console.log("local storage working 2: " + JSON.stringify(localFirstNameNew));
@@ -157,8 +203,8 @@ $(document).on('click',".purchaseBtn", function(event){
             $.ajax("/data/customer", {
                 type: "GET"
             }).then(function(data) {
-                console.log("here is your data: "+ data);
-                console.log(JSON.stringify(data.customer));
+                // console.log("here is your data: "+ data);
+                // console.log(JSON.stringify(data.customer));
                 for(i = 0; i < data.customer.length; i++){
                     if(data.customer[i].userid == localFirstName.userid){
                         let id = data.customer[i].id;
@@ -176,7 +222,7 @@ $(document).on('click',".purchaseBtn", function(event){
                 type: "PUT",
                 data: newAmmount
             }).then(e => {
-                console.log("Updated Credentials!");
+                // console.log("Updated Credentials!");
             });
             let purchaseHistData = {
                 firstname: localFirstName.firstname,
@@ -187,17 +233,66 @@ $(document).on('click',".purchaseBtn", function(event){
                 userid: localFirstName.userid,
                 price: priceData,
                 purchaseday: today
-            }
-            console.log("purchase HISTORY!!! "+ JSON.stringify(purchaseHistData));
+            };
+            // console.log("purchase HISTORY!!! "+ JSON.stringify(purchaseHistData));
             $.ajax("/api/purchasehist/", {
                 type: "POST",
                 data: purchaseHistData
             }).then(e => {
-                console.log("Updated Credentials!");
+                // console.log("Updated Credentials!");
+            });
+            let leaderboardsData = {
+                firstname: localFirstName.firstname,
+                lastname: localFirstName.lastname,
+                userid: localFirstName.userid,
+                price: priceData,
+            };
+            $.ajax("/data/leaderboards", {
+                type: "GET"
+            }).then(function(data) {
+                console.log("here is your data: "+ JSON.stringify(data));
+                console.log(JSON.stringify(data.leaderboards));
+                let comparisonArray = [];
+                console.log("leaderboard ID: " + data.leaderboards);
+                console.log("local ID: " + localFirstName.userid);
+                console.log("leaderboard DatA: " + JSON.stringify(leaderboardsData));
+                for(i=0; i < data.leaderboards.length; i++){
+                    comparisonArray.push([i]);
+                    console.log("comparison ARRAY!: " + comparisonArray);
+                    if(data.leaderboards[i].userid === localFirstName.userid){
+                        let id = data.leaderboards[i].id;
+                        let newPrice = priceData + data.leaderboards[i].price; 
+                        let newLeaderboardsData = {
+                            firstname: localFirstName.firstname,
+                            lastname: localFirstName.lastname,
+                            userid: localFirstName.userid,
+                            price: newPrice,
+                        }
+                        console.log("user found!");
+                        $.ajax("/api/leaderboards/" + id, {
+                            type: "PUT",
+                            data: newLeaderboardsData
+                        }).then(e => {
+                            console.log("leaderboard Updated!");
+                            location.reload();
+                        });
+                        break;
+                    } else if (data.leaderboards[i].userid !== localFirstName.userid && data.leaderboards.length == comparisonArray.length) {
+                        console.log("no user found!");
+                        $.ajax("/api/leaderboards/", {
+                            type: "POST",
+                            data: leaderboardsData
+                        }).then(e => {
+                            console.log("leaderboard Updated!");
+                            location.reload();
+                        });
+                    } else {
+                        console.log("Searching!")
+                    };
+                };
             });
         };
     };
-    location.reload();
 });
 $(document).on('click',".restockBtn", function(event){
     let id = $(this).data("id");
