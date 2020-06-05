@@ -19,7 +19,7 @@ $.ajax("/data/customer", {
 $(document).on('click',"#updateBtn", function(event) {
     let id = $(this).data("id");
     console.log("this button's id: "+id);
-    $("#userContentDiv").append("<div id='fieldsetDiv'><fieldset><legend>Credential Update</legend><input id='newFirstName' placeholder='First Name'><input id='newLastName' placeholder='Last Name'><input id='newEmailAddress' placeholder='Email Address'><input id='newPhoneNumber' placeholder='Phone Number'><input id='newStreetAddress' placeholder='Street Address'><input id='newPassword' placeholder='Password'><button id='newCredentialBtn' data-id='"+id+"'>submit</button></fieldset></div>");
+    $("#userContentDiv").append("<div id='fieldsetDiv'><fieldset><legend>Credential Update</legend><input id='newFirstName' placeholder='First Name'><input id='newLastName' placeholder='Last Name'><input id='newPhoneNumber' placeholder='Phone Number'><input id='newStreetAddress' placeholder='Street Address'><button id='newCredentialBtn' data-id='"+id+"'>submit</button></fieldset></div>");
 });
 $(document).on('click',"#newCredentialBtn", function(event){
     let id = $(this).data("id");
@@ -30,8 +30,8 @@ $(document).on('click',"#newCredentialBtn", function(event){
         phone: $("#newPhoneNumber").val(),
         address: $("#newStreetAddress").val(),
         credit: newCred,
-        userPassword: $("#newPassword").val(),
-        email: $("#newEmailAddress").val(),
+        userPassword: localFirstName.userPassword,
+        email: localFirstName.email,
         userid: newID,
     };
     localStorage.setItem("user",JSON.stringify(newCredentails));
