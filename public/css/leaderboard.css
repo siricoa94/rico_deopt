@@ -6,32 +6,44 @@ body {
 }
 #container {
     padding-top: 200px;
+    background-image: url("../images/ricostore3d.png");
+    background-size: stretch;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
+}
+#outerContainer {
     display: flex;
     justify-content: center;
+    min-height: 800px;
 }
 #containerInner {
-    background-color: aquamarine;
     margin-bottom: 100px;
-    border: 2px solid black;
     border-radius: 0.25rem;
+}
+#leaderHeader {
+    background-color: rgb(49, 49, 49);
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
 }
 .even {
     background-color: rgb(211, 101, 123);
     color: white;
+    display: flex;
+    justify-content: space-between;
 }
 .odd {
     background-color: rgb(85, 136, 212);
     color: white;
+    display: flex;
+    justify-content: space-between;
 }
 .firstPlace {
-    background-color: rgb(85, 212, 127);
-    color: white;
-}
-#firstPlaceTitle {
+    background-color: rgb(245, 188, 0);
+    color: rgb(0, 0, 0);
     display: flex;
-    justify-content: center;
-    /* height: 10px; */
-    padding: 20px 40px 0px 40px;
+    justify-content: space-between;
 }
 #firstPlaceTitle > p {
     border-bottom: solid 2px white;
@@ -39,12 +51,11 @@ body {
 .innerRepeatingDivClass {
     display: flex;
     justify-content: center;
-    height: 10px;
-    padding: 20px 40px 20px 40px;
+    width: 50px;
+    padding: 10px;
 }
 @media only screen and (min-width: 600px) {
     #containerInner {
-        border: 2px solid black;
         margin-bottom: 100px;
         width: 600px;
         border-radius: 0.25rem;

@@ -18,7 +18,11 @@ body {
     display: flex;
     justify-content: center;
     padding: 80px 20px 50px 20px;
-    background-color: rgb(240, 240, 240);
+    background-image: url("../images/ricostore3d.png");
+    background-size: stretch;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
 }
 #productContainerInner {
     background-color: white;
@@ -29,10 +33,11 @@ body {
     display: flex;
     justify-content: space-around;
     height: 50px;
-    background-color: #1a73e8;
+    background-color:rgb(211, 101, 123);
     color: white;
     padding: 30px;
     font-weight: 600;
+    border-radius: .25rem;
 }
 .productCardOutStock {
     display: flex;
@@ -53,6 +58,7 @@ body {
 }
 .purchaseBtn {
     margin-bottom: 10px;
+    background-color: rgb(66, 63, 63);
 }
 @media only screen and (max-width: 600px) {
     .productImg {

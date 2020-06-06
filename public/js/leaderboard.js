@@ -10,11 +10,11 @@ $.ajax("/data/leaderboards", {
     for(i = 0; i < newArray.length; i ++){
         var rank = i + 1;
         if(rank%2 == 0){
-            $("#containerInner").append("<div class='even'><div class='innerRepeatingDivClass'>Rank: "+rank+"</div><div class='innerRepeatingDivClass'>Name First: "+price[i].firstname +"</div><div class='innerRepeatingDivClass'>Name Last: "+price[i].lastname +"</div><div class='innerRepeatingDivClass'>Score: "+price[i].price +"!</div></div>");
+            $("#containerInner").append("<div class='even'><div class='innerRepeatingDivClass'>"+rank+"</div><div class='innerRepeatingDivClass'>"+price[i].firstname +"</div><div class='innerRepeatingDivClass'>"+price[i].lastname +"</div><div class='innerRepeatingDivClass'>"+price[i].price +"</div></div>");
         } else if(rank == 1) {
-            $("#containerInner").append("<div class='firstPlace'><div id='firstPlaceTitle'><p>FIRST PLACE</p></div><div class='innerRepeatingDivClass'>Rank: "+rank+"</div><div class='innerRepeatingDivClass'>Name First: "+price[i].firstname +"</div><div class='innerRepeatingDivClass'>Name Last: "+price[i].lastname +"</div><div class='innerRepeatingDivClass'>Score: "+price[i].price +"!</div></div>");
+            $("#containerInner").append("<div class='firstPlace'><div class='innerRepeatingDivClass'>"+rank+"</div><div class='innerRepeatingDivClass'>"+price[i].firstname +"</div><div class='innerRepeatingDivClass'>"+price[i].lastname +"</div><div class='innerRepeatingDivClass'>"+price[i].price +"</div></div>");
         } else {
-            $("#containerInner").append("<div class='odd'><div class='innerRepeatingDivClass'>Rank: "+rank+"</div><div class='innerRepeatingDivClass'>Name First: "+price[i].firstname +"</div><div class='innerRepeatingDivClass'>Name Last: "+price[i].lastname +"</div><div class='innerRepeatingDivClass'>Score: "+price[i].price +"!</div></div>");
+            $("#containerInner").append("<div class='odd'><div class='innerRepeatingDivClass'>"+rank+"</div><div class='innerRepeatingDivClass'>"+price[i].firstname +"</div><div class='innerRepeatingDivClass'>"+price[i].lastname +"</div><div class='innerRepeatingDivClass'>"+price[i].price +"</div></div>");
         }
         
     };
