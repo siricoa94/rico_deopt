@@ -2,7 +2,11 @@ let mysql = require("mysql");
 
 let connection;
 
-connection = mysql.createconnection(process.env.JAWSDB_URL);
+if (process.env.JAWSDB_URL) {
+   connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+    connection = dbConnect;
+};
 
 connection.connect(function(err) {
     if (err) throw err;
